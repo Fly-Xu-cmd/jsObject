@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%; height: 100%;">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+  <link rel="stylesheet" href="./common.css">
+  <style>
+    #gameingBg {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background-image: url('./images/gameImages/gamingBg1.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    #sit1 {
+      position: absolute;
+      bottom: 30px;
+      right: 10px;
+      width: 250px;
+      height: 300px;
+      background-image: url('./images/wuJiangs/myImages/zhaoYun4.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    #sit1 div:nth-of-type(2) {
+      position: absolute;
+      bottom: -20px;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+    }
+
+    #zhuangBei {
+      position: absolute;
+      bottom: 40px;
+      right: 220px;
+    }
+
+    #zhuangBei ul li {
+      width: 150px;
+      height: 30px;
+      margin-top: 20px;
+      background-image: url('./images/xiaoTubiaoImages/zhuangBeiBg.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    #sit2 {
+      position: absolute;
+      top: 30px;
+      right: 500px;
+      background-image: url('./images/wuJiangs/myImages/diaoChan3.png');
+      width: 250px;
+      height: 300px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    #sit2 div:nth-of-type(1) {
+      position: absolute;
+      bottom: -20px;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+    }
+
+    #sit2 div:nth-of-type(2) {
+      position: absolute;
+      top: 10px;
+      right: 0px;
+      color: yellow;
+      width: 25%;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: #000 1px 1px 1px;
+    }
+
+    #sit3 {
+      position: absolute;
+      top: 30px;
+      right: 900px;
+      background-image: url('./images/wuJiangs/myImages/zhouYu4.png');
+      width: 250px;
+      height: 300px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    #sit3 div:nth-of-type(1) {
+      position: absolute;
+      bottom: -20px;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+    }
+
+    #sit3 div:nth-of-type(2) {
+      position: absolute;
+      top: 10px;
+      right: 0px;
+      color: yellow;
+      width: 25%;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: #000 1px 1px 1px;
+    }
+
+    #sit4 {
+      position: absolute;
+      top: 200px;
+      left: 100px;
+      background-image: url('./images/wuJiangs/myImages/zhuGeLiang3.png');
+      width: 250px;
+      height: 300px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    #sit4 div:nth-of-type(1) {
+      position: absolute;
+      bottom: -20px;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+    }
+
+    #sit4 div:nth-of-type(2) {
+      position: absolute;
+      top: 10px;
+      right: 0px;
+      color: yellow;
+      width: 25%;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: #000 1px 1px 1px;
+    }
+
+    #chuPai {
+      position: absolute;
+      bottom: 140px;
+      left: 30%;
+      width: 40%;
+      height: 90px;
+      text-align: center;
+    }
+
+    #chuPai span {
+      width: 100%;
+      display: block;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fbff29;
+      background-image: url('./images/gameImages/game-bottom-bg.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    #chuPai button {
+      width: 30%;
+      height: 40px;
+      margin: 10px auto;
+      background-color: #47dbc0c0;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #cards {
+      position: absolute;
+      bottom: 5px;
+      width: 100%;
+      text-align: center;
+    }
+
+    #cardList {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #cardList li {
+      width: 100px;
+      height: 150px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body style="width: 100%; height: 100%;">
+  <div id="gameingBg">
+    <div id="sit1">
+      <div id="zhuangBei">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div>一号位</div>
+    </div>
+    <div id="sit2">
+      <div>二号位</div>
+      <div>敌方</div>
+    </div>
+    <div id="sit3" style=" background-image: url('./images/wuJiangs/myImages/zhouYu4.png');">
+      <div>三号位</div>
+      <div>敌方</div>
+    </div>
+    <div id="sit4" style="background-image: url('./images/wuJiangs/myImages/zhuGeLiang3.png');">
+      <div>四号位</div>
+      <div>友方</div>
+    </div>
+    <div id="chuPai">
+      <span>10</span>
+      <button data-name="chuPaiBtn">出牌</button>
+      <button data-name="qiPaiBtn">弃牌</button>
+    </div>
+    <div id="cards">
+      <ul id="cardList">
+      </ul>
+    </div>
+  </div>
+  <script>
+    // 这里是测试代码
+    const sits = [document.querySelector('#sit1'), document.querySelector('#sit2'), document.querySelector('#sit3'), document.querySelector('#sit4')]
+    const chuPaiBtn = document.querySelector('#chuPai button[data-name="chuPaiBtn"]')
+    const cardList = document.querySelector('#cardList')
+    let li = document.createElement('li')
+    li.style.backgroundImage = 'url("./images/cards/card/jiBen/sha-BlackT-8.png")'
+    cardList.appendChild(li)
+    let checkedSits = []
+    let checkedCard
+    sits.forEach(sit => {
+      sit.addEventListener('click', () => {
+        console.log(checkedSits.push(sit))
+        console.log(checkedSits)
+        if (checkedSits.length > 4) {
+          checkedSits.shift()
+        }
+      })
+    })
+    li.addEventListener('click', (card) => {
+      // checkedSits = []
+      checkedCard = card.target.style.backgroundImage
+      console.log(checkedCard)
+    })
+    chuPaiBtn.addEventListener('click', () => {
+      if (checkedCard.includes('sha')) {
+        const sit = checkedSits.pop()
+        let sit_bg = sit.style.backgroundImage
+        console.log(sit)
+        console.log(sit_bg)
+        sit_bg = sit_bg.replace(/\d/, 2)
+        sit.style.backgroundImage = `${sit_bg}`
+        console.log(sit)
+        console.log(sit_bg)
+      }
+    })
+  </script>
+</body>
+
+</html>

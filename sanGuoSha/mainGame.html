@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%; height: 100%;">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>三国杀</title>
+  <link rel="stylesheet" href="./common.css">
+  <link rel="shortcut icon" href="./images/xiaoTubiaoImages/title.png" type="image/x-icon">
+  <style>
+    @font-face {
+      font-family: 'myFont';
+      src: url('./font/fzbw.ttf') format('truetype');
+    }
+
+    #mainGame {
+      position: relative;
+      display: none;
+      top: 5%;
+      left: 0;
+      width: 100%;
+      height: 90%;
+      background: url('./images/gameImages/gameBg13.png') no-repeat center center;
+      background-size: contain;
+    }
+
+    #userHeadBg {
+      position: absolute;
+      top: 2%;
+      left: 6%;
+      width: 20%;
+      height: 10%;
+      background: url('./images/xiaoTubiaoImages/head1.png') no-repeat center center;
+      background-size: contain;
+      z-index: 999;
+      cursor: pointer;
+    }
+
+    #userHeadImg {
+      position: absolute;
+      top: -15%;
+      width: 100%;
+      height: 120%;
+      background: url('./images//gameImages/userbg.png') no-repeat center center;
+      background-size: contain;
+    }
+
+    .userLevel {
+      position: relative;
+      top: 35%;
+      left: 45%;
+      font-size: 1rem;
+      color: #fff490;
+      text-align: center;
+      line-height: 100%;
+    }
+
+    .userLevelBg {
+      width: 20%;
+      height: 30%;
+      top: 65%;
+      left: 40%;
+      background: #000;
+      opacity: 0.5;
+
+    }
+
+    #heads {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      grid-gap: 5px;
+      position: absolute;
+      top: 90%;
+      left: 40%;
+      width: 60%;
+      height: 315%;
+      cursor: pointer;
+    }
+
+    .heads {
+      width: 100%;
+      height: 115%;
+      background-size: contain;
+      z-index: 999;
+
+    }
+
+    #headRight {
+      position: absolute;
+      top: -30%;
+      right: -11%;
+      width: 50%;
+      height: 100%;
+      text-align: center;
+      line-height: 450%;
+      color: #fff;
+      background: url('./images/gameImages/userNameBg.png') no-repeat center center;
+      background-size: contain;
+      z-index: 999;
+    }
+
+    #headRight2 {
+      position: absolute;
+      top: 45%;
+      right: -11%;
+      width: 50%;
+      height: 0;
+      text-align: center;
+      color: #fff;
+      background-color: #000;
+      background-size: contain;
+      z-index: 999;
+      transition: all 0.5s;
+      overflow: hidden;
+    }
+
+    #match {
+      position: absolute;
+      right: 15%;
+      bottom: 40%;
+      width: 16%;
+      height: 30%;
+      background-image: url('./images/gameImages/lobbyNew.pvr.png');
+      background-position: -10px -790px;
+      transform: rotate(-90deg);
+      cursor: pointer;
+    }
+
+    #bottom {
+      position: absolute;
+      bottom: 0;
+      left: 15%;
+      width: 74%;
+      height: 7%;
+      background-image: url('./images/gameImages/game-bottom-bg.png');
+      background-position: center center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    #wuJiang {
+      position: absolute;
+      bottom: 0;
+      right: 10%;
+      width: 10%;
+      height: 10%;
+      background-image: url('./images/gameImages/lobby_mark_wujiang.png');
+      background-position: center center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
+    #wuJiangBg {
+      position: relative;
+      display: none;
+      top: 5%;
+      left: 0;
+      width: 100%;
+      height: 90%;
+      background: url('./images/gameImages/wuJiangBg.png') no-repeat center center;
+      background-size: contain;
+    }
+
+    #backDiv {
+      position: absolute;
+      top: -2%;
+      left: 13%;
+      width: 15%;
+      height: 10%;
+      background-image: url('./images/gameImages/back_right.png');
+      background-position: center center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      display: flex;
+      z-index: 999;
+    }
+
+    #backDiv div:nth-of-type(1) {
+      position: absolute;
+      top: 25%;
+      left: 20%;
+      width: 25%;
+      height: 50%;
+      background-image: url('./images/gameImages/back_1.png');
+      background-position: center center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
+    #backDiv div:nth-of-type(2) {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      width: 25%;
+      height: 50%;
+      color: #fff490;
+      font-size: 20px;
+      text-align: center;
+
+    }
+
+    #leftList {
+      position: absolute;
+      top: 0;
+      left: 13%;
+      width: 14%;
+      height: 100%;
+      background: #0000004f;
+      padding-top: 3%;
+    }
+
+    #leftList ul {
+      width: 100%;
+      height: 100%;
+    }
+
+    #leftList li {
+      width: 100%;
+      height: 15%;
+      text-align: center;
+      line-height: 400%;
+      /* color: #ce9e03; */
+      color: #fff;
+      font-size: 1.5rem;
+      cursor: pointer;
+      background-image: url('./images/gameImages/newStyleBaseUI.webp');
+      background-position: -530px -440px;
+      background-repeat: no-repeat;
+
+    }
+
+    #wuJiangs {
+      position: absolute;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 10px;
+      top: 10%;
+      left: 30%;
+      width: 55%;
+      height: 90%;
+      overflow: hidden;
+      overflow-y: scroll;
+    }
+
+    #money1,
+    #money2,
+    #money3 {
+      position: absolute;
+      top: 1%;
+      right: 45%;
+      width: 9%;
+      height: 7%;
+      background-image: url('./images/gameImages/newStyleBaseUI.webp');
+      background-position: -1127px -854px;
+      background-repeat: no-repeat;
+    }
+
+    #money2 {
+      right: 35%;
+    }
+
+    #money3 {
+      right: 25%;
+    }
+
+    .addMoney {
+      position: absolute;
+      top: 15%;
+      right: 5%;
+      width: 25%;
+      height: 80%;
+      background-image: url('./images/gameImages/newStyleBaseUI.webp');
+      background-position: -1115px -1190px;
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
+    #piPeiBg {
+      position: relative;
+      display: none;
+      width: 70%;
+      height: 80%;
+      top: 70px;
+      margin: auto;
+      background-image: url('./images/xiaoTubiaoImages/piPeiBg.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #piPeiBg>div:nth-of-type(1) {
+      position: absolute;
+      top: 45%;
+      left: 45%;
+      width: 130px;
+      height: 100px;
+      background-image: url('./images/xiaoTubiaoImages/vs.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      transform: rotate(-90deg);
+    }
+
+    #piPeiBg>div:nth-of-type(2) {
+      position: absolute;
+      display: grid;
+      top: 10%;
+      left: 32%;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 150px;
+    }
+
+    #piPeiBg>div:nth-of-type(2)>div {
+      width: 130px;
+      height: 180px;
+      background-image: url('./images/xiaoTubiaoImages/jueSeBg.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    #piPeiBg>div:nth-of-type(3) {
+      position: absolute;
+      top: 40%;
+      right: 50px;
+      width: 150px;
+      height: 190px;
+    }
+
+    #readyBtn {
+      width: 150px;
+      height: 150px;
+      background-image: url('./images/xiaoTubiaoImages/confirmBg.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      text-align: center;
+      line-height: 140px;
+      font-size: 23px;
+      color: rgb(250, 248, 119);
+      font-weight: bold;
+    }
+
+    #noReady,
+    #ready {
+      color: rgba(253, 250, 250, 0.568);
+      text-align: center;
+
+    }
+
+    #noReady>span:nth-of-type(n+2),
+    #ready>span:nth-of-type(n+2) {
+      color: #fac682;
+    }
+
+    body {
+      font-family: 'myFont';
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #choiceWuJiangBg {
+      position: relative;
+      display: none;
+      width: 70%;
+      height: 80%;
+      top: 70px;
+      margin: auto;
+      background-image: url('./images/xiaoTubiaoImages/choiceWuJiangBg.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    #choiceWuJiangs {
+      position: absolute;
+      top: 100px;
+      right: 100px;
+      width: 800px;
+      height: 500px;
+      overflow: hidden;
+      overflow-y: scroll;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+    }
+
+    #choiceWuJiangLeft {
+      position: absolute;
+      top: 200px;
+      left: 50px;
+      width: 230px;
+      height: 290px;
+      background-image: url('./images/xiaoTubiaoImages/wuJiangBg.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    #choiceWuJiangBg button {
+      position: absolute;
+      bottom: 80px;
+      left: 65px;
+      width: 200px;
+      height: 50px;
+      font-size: 20px;
+      color: #fff;
+      background-color: rgba(248, 244, 244, 0.2);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #choiceRestTime {
+      position: absolute;
+      top: 15px;
+      left: 600px;
+      font-size: 30px;
+      color: yellow;
+      font-weight: bold;
+    }
+
+    #gamingBg {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background-image: url('./images/gameImages/gamingBg1.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    #sit1 {
+      position: absolute;
+      bottom: 30px;
+      right: 10px;
+      width: 250px;
+      height: 300px;
+      /* background-image: url('./images/wuJiangs/myImages/zhaoYun4.png'); */
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+    }
+
+    #sit1 div:nth-of-type(2) {
+      position: absolute;
+      bottom: -20px;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+    }
+
+    #zhuangBei {
+      position: absolute;
+      bottom: 40px;
+      right: 220px;
+    }
+
+    #zhuangBei ul li {
+      width: 150px;
+      height: 30px;
+      margin-top: 20px;
+      background-image: url('./images/xiaoTubiaoImages/zhuangBeiBg.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    #sit2 {
+      position: absolute;
+      top: 30px;
+      right: 500px;
+      /* background-image: url('./images/wuJiangs/myImages/diaoChan3.png'); */
+      width: 250px;
+      height: 300px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+    }
+
+    #sit2 div:nth-of-type(1) {
+      position: absolute;
+      bottom: -20px;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+    }
+
+    #sit2 div:nth-of-type(2) {
+      position: absolute;
+      top: 10px;
+      right: 0px;
+      color: yellow;
+      width: 25%;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: #000 1px 1px 1px;
+    }
+
+    #sit3 {
+      position: absolute;
+      top: 30px;
+      right: 900px;
+      /* background-image: url('./images/wuJiangs/myImages/zhouYu4.png'); */
+      width: 250px;
+      height: 300px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+    }
+
+    #sit3 div:nth-of-type(1) {
+      position: absolute;
+      bottom: -20px;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+    }
+
+    #sit3 div:nth-of-type(2) {
+      position: absolute;
+      top: 10px;
+      right: 0px;
+      color: yellow;
+      width: 25%;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: #000 1px 1px 1px;
+    }
+
+    #sit4 {
+      position: absolute;
+      top: 200px;
+      left: 100px;
+      /* background-image: url('./images/wuJiangs/myImages/zhuGeLiang3.png'); */
+      width: 250px;
+      height: 300px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+    }
+
+    #sit4 div:nth-of-type(1) {
+      position: absolute;
+      bottom: -20px;
+      color: #fff;
+      text-align: center;
+      width: 100%;
+    }
+
+    #sit4 div:nth-of-type(2) {
+      position: absolute;
+      top: 10px;
+      right: 0px;
+      color: yellow;
+      width: 25%;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      text-shadow: #000 1px 1px 1px;
+    }
+
+    #chuPai {
+      position: absolute;
+      bottom: 140px;
+      left: 30%;
+      width: 40%;
+      height: 90px;
+      text-align: center;
+    }
+
+    #chuPai span {
+      width: 100%;
+      display: block;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fbff29;
+      background-image: url('./images/gameImages/game-bottom-bg.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    #chuPai button {
+      width: 30%;
+      height: 40px;
+      margin: 10px auto;
+      background-color: #47dbc0c0;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #cards {
+      position: absolute;
+      bottom: 5px;
+      width: 100%;
+      text-align: center;
+    }
+
+    #cardList,
+    .cardList {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #cardList li,
+    .cardList li {
+      width: 90px;
+      height: 125px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      cursor: pointer;
+      margin-right: 5px;
+      margin-top: 5px;
+      transition: all 0.5s ease;
+    }
+
+    @media screen and (max-width: 768px) {
+      html {
+        font-size: 14px;
+      }
+    }
+
+    .countDown {
+      position: absolute;
+      text-align: center;
+      font-size: 2rem;
+      color: #fff;
+
+      font-weight: bold;
+      left: 50%;
+      top: 5%;
+    }
+
+    .panDingDiv {
+      position: absolute;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #fff;
+      font-weight: bold;
+      width: 100%;
+      text-align: center;
+      top: 13%;
+    }
+  </style>
+</head>
+
+<body style="width: 100%; height: 100%;background: #000; ;">
+  <div id="onloading"
+    style=" position: relative; width: 100%; height: 100%; background-repeat: no-repeat;background-position: center center; background-size:contain; ">
+    <div
+      style="position: absolute;top: -10%;left: 4%; width: 15%; height: 35%; background: url('./images/onload/launcher_logo.png') no-repeat center center; background-size: contain;">
+    </div>
+    <div id="horse"
+      style="position: absolute;bottom: 8%;left: 10%; width: 5%;height: 10%; background: url('./images/onload/horse.png') no-repeat center center; background-size: contain; ">
+    </div>
+    <div id="loading"
+      style="position: relative;height: 1%;bottom: -90%;left: 10%;background:#fcf262e8;border-radius: 20px;">
+    </div>
+    <div id="Loadtext"
+      style=" position: absolute;width:21%;height: 4%;bottom:2%;left: 40%; background:#000;border-radius: 100px;color: #fff;text-align: center;line-height: 180%; font-size: 1rem;">
+      ··· 正在解析本地文件（无需消耗流量）···
+    </div>
+  </div>
+  <div id="mainGame">
+    <div id='userHeadBg'>
+      <div id="userHeadImg" data-id="userHead"></div>
+      <div class="userLevel userLevelBg"></div>
+      <span class="userLevel">LV.</span><span class="userLevel" id="userLevel">1</span>
+      <div id="heads">
+        <div class="heads" data-index="1"></div>
+        <div class="heads" data-index="2"></div>
+        <div class="heads" data-index="3"></div>
+        <div class="heads" data-index="4"></div>
+        <div class="heads" data-index="5"></div>
+        <div class="heads" data-index="6"></div>
+        <div class="heads" data-index="7"></div>
+        <div class="heads" data-index="8"></div>
+        <div class="heads" data-index="9"></div>
+      </div>
+      <div id="headRight">匡扶汉室</div>
+      <div id="headRight2">
+        <div id="winNum"></div>
+        <div id="loseNum"></div>
+        <div id="winRate"></div>
+      </div>
+    </div>
+    <div id="money">
+      <div id="money1">
+        <img src="./images/gameImages/money1.png" style="position: absolute;width: 30%;height: 70%;top: 14%;" alt="">
+        <span
+          style="position: absolute;top: 15%;left: 40%;font-size: 1.5rem;color: #fff490;font-weight: bold;">100</span>
+        <div class="addMoney"></div>
+      </div>
+
+      <div id="money2">
+        <img src="./images/gameImages/money2.png" style="position: absolute;width: 30%;height: 70%;top: 14%;" alt="">
+        <span style="position: absolute;top: 15%;left: 40%;font-size: 1.5rem;color: #fff490;font-weight: bold;">0</span>
+        <div class="addMoney"></div>
+      </div>
+
+      <div id="money3">
+        <img src="./images/gameImages/money3.png" style="position: absolute;width: 30%;height: 70%;top: 14%;" alt="">
+        <span style="position: absolute;top: 15%;left: 40%;font-size: 1.5rem;color: #fff490;font-weight: bold;">0</span>
+        <div class="addMoney"></div>
+      </div>
+    </div>
+    <div id="match"></div>
+    <div id="bottom"></div>
+    <div id="wuJiang"></div>
+  </div>
+  <div id="wuJiangBg">
+    <div id="leftList">
+      <ul>
+        <li>全部武将</li>
+      </ul>
+    </div>
+    <div id="backDiv">
+      <div id="back"></div>
+      <div>武将</div>
+    </div>
+    <div id="wuJiangs"></div>
+  </div>
+  <div id="piPeiBg">
+    <div></div>
+    <div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div>
+      <div id="readyBtn">确认</div>
+      <div id="noReady">
+        <span>剩余</span>
+        <span id="restTime-noReady"></span>
+        <span>秒</span>
+      </div>
+      <div id="ready" style="display: none;">
+        <span>请等待其他玩家剩余时间</span>
+        <span id="restTime-ready"></span>
+        <span>秒</span>
+      </div>
+    </div>
+  </div>
+  <div id="choiceWuJiangBg">
+    <div id="choiceRestTime">
+      <span></span>
+      <span>秒</span>
+    </div>
+    <div id="choiceWuJiangLeft"></div>
+    <div id="choiceWuJiangs"></div>
+    <button>确定</button>
+  </div>
+  <div id="gamingBg">
+    <div id="sit1">
+      <div id="zhuangBei">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div>一号位</div>
+      <div class="panDingDiv"></div>
+    </div>
+    <div id="sit2">
+      <div>二号位</div>
+      <div>敌方</div>
+      <div class="countDown"></div>
+      <div class="panDingDiv"></div>
+    </div>
+    <div id="sit3">
+      <div>三号位</div>
+      <div>敌方</div>
+      <div class="countDown"></div>
+      <div class="panDingDiv"></div>
+    </div>
+    <div id="sit4">
+      <div>四号位</div>
+      <div>友方</div>
+      <div class="countDown"></div>
+      <div class="panDingDiv"></div>
+    </div>
+    <div id="chuPai">
+      <span>15</span>
+      <button data-name="chuPaiBtn">出牌</button>
+      <button data-name="qiPaiBtn">弃牌</button>
+    </div>
+    <div id="cards">
+      <ul id="cardList" class="cardList">
+      </ul>
+    </div>
+  </div>
+  <div id="centerDiv" style="display:none;position: absolute;top:50%;width: 100%;text-align: center;">
+    <ul id="centerUl" class="cardList"></ul>
+  </div>
+  <script>
+    //注册service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./jsCode/service-worker.js')
+        .then(function (registration) {
+          console.log('Service Worker 注册成功');
+        })
+        .catch(function (error) {
+          console.log('Service Worker 注册失败:', error);
+        });
+    }
+  </script>
+  <script type="module" src="./jsCode/mainGame.mjs"></script>
+</body>
+
+</html>

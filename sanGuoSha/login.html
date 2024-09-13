@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" style="width: 100%;height: 100%;">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>三国杀登录</title>
+  <link rel="stylesheet" type="text/css" href="./common.css">
+  <link rel="stylesheet" type="text/css" href="./iconfont/iconfont.css">
+  <link rel="shortcut icon" href="./images/xiaoTubiaoImages/title.png" type="image/x-icon">
+  <style>
+    .registerInput[type='text']::-webkit-input-placeholder,
+    .registerInput[type='password']::-webkit-input-placeholder {
+      color: rgba(182, 145, 127);
+    }
+
+    ::-webkit-scrollbar {
+      width: 7px;
+      height: 10px;
+      border-radius: 15px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #e7b8617e;
+      border-radius: 15px;
+    }
+
+
+    ::-webkit-scrollbar-track {
+      background-color: #b6917faf;
+      border-radius: 15px;
+    }
+  </style>
+</head>
+
+<body style="width: 100%;height: 100%;">
+  <div class="loginDiv"
+    style="width: 100%;height:110%;background:url('./images/Loginimages/gameBg.png');background-repeat: no-repeat;background-size: cover;display: flex;justify-content: center;align-items: center;">
+    <div style="position: relative;width: 1600px;height: 900px;top: -2%;">
+      <video src="./video/loginBgVideo.mp4" autoplay muted loop style="position: absolute;"></video>
+      <div style="position:absolute;top:25%;left:27%;width: 732px;height: 419px;">
+        <h1
+          style="position: absolute;top:-30%;left: 25%;width: 376px;height: 184px;background: url('./images/Loginimages/title.png');background-repeat: no-repeat;background-size: cover;">
+        </h1>
+        <form id="loginForm"
+          style="background: url('./images/Loginimages/loginBg.png');width: 732px;height: 419px;display: flex;flex-direction: column;justify-content: center;align-items: center;">
+          <div id="loginError"
+            style="padding-bottom: 0;padding-left: 153px;color: #fd4040;width:536px;height: 20px;line-height: 20px;margin-bottom: 12px;">
+          </div>
+          <div
+            style="display:flex; width: 536px;height: 203px;flex-direction: column;justify-content: space-between;align-items: center;">
+            <div style="position: relative;display: flex;width: 536px;height: 40px;margin-bottom: 20px;">
+              <label for="userName"
+                style="background: url('./images/Loginimages/uN-Ps.png');background-position: 0 0;background-size: auto auto;height: 26px;margin-right: 30px;width: 125px;"></label>
+              <input type="text" name="userName" id="userName" placeholder="手机号" maxlength="11"
+                style="width: 252px;height: 31px;padding:0 12px;border: 1px solid #ffa500;background-color: rgb(0, 0, 0,0);font-size: 16px;color: #f9edde;;">
+              <a href="javascript:void (()=>document.querySelector('#registerFatherDiv').style.display='block')()"
+                style="position: absolute;right: 25px;font-size: 16px;color: rgb(153, 153, 153);">注册账号</a>
+            </div>
+            <div style="position: relative;display: flex;width: 536px;height: 40px;margin-bottom: 20px;">
+              <label for="loginPassWord"
+                style="background: url('./images/Loginimages/uN-Ps.png');background-position: 0 -54px;background-size: auto auto;height: 26px;margin-right: 30px;width: 125px;"></label>
+              <input type="password" name="loginPassWord" id="loginPassWord" placeholder="请填写密码" maxlength='18'
+                style="width: 252px;height: 31px;padding:0 12px;border: 1px solid #ffa500;background-color: rgb(0, 0, 0,0);font-size: 16px;color: #f9edde;;">
+              <a href="javascript:void(0)" id="yanJing" class="iconfont icon-yanjing"
+                style="position: absolute;right:45px;font-size: 20px;color: rgb(153, 153, 153);"></a>
+            </div>
+            <input type="submit" name="submit"
+              style="width:214px;height:52px;margin:15px 161px;background:url('./images/Loginimages/loginButton.png') no-repeat;text-indent: -9999px;filter: grayscale(.5);cursor: pointer;">
+          </div>
+        </form>
+
+      </div>
+      <div
+        style="width:94px;height: 122px;position: absolute;bottom: 190px;left:36px;background:url('./images/Loginimages/limit12+.png') no-repeat;">
+      </div>
+    </div>
+  </div>
+  <div id="registerFatherDiv"
+    style="display:none;width: 100%;height:110%;position: absolute;top: 0;left: 0;background: rgba(0, 0, 0, 0.5);">
+    <div class="registerDiv"
+      style="position: fixed;top:26%;left:29%;z-index: 1;width: 749px;height: 476px;background:url('./images/Loginimages/registerBg.png');background-repeat: no-repeat;background-size: cover;display: flex;justify-content: center;align-items: center;">
+      <div
+        style="width: 31px;height: 71px;position:absolute;top: 3px;right:0;background: url('./images/Loginimages/registerClose.png');cursor: pointer;"
+        onclick="document.querySelector('#registerFatherDiv').style.display='none'">
+      </div>
+      <form id="registerForm" style="position:relative;width:594px;height:270px;">
+        <div style="position:relative;display: flex;width:594px;height:35px;margin-top: 27px;">
+          <label for="phone"
+            style="width:155px;height:35px;background: url('./images/Loginimages/registerPhone.png');background-size: 95px 21px ;background-position:45px 5px;background-repeat: no-repeat;"></label>
+          <input type="text" name="phone" id="phone" class="registerInput" placeholder="请输入手机号" maxlength="11"
+            style="width: 390px;height: 33px;padding: 7px;background-color: #846c60;color: #fff;">
+          <span id="phoneError" style="position:absolute;top:35px;left:155px;color: red;font-size: 16px;"></span>
+        </div>
+        <div style="position:relative;display: flex;width:594px;height:35px;margin-top: 27px;">
+          <label for="registerPassWord"
+            style="width:155px;height:35px;background: url('./images/Loginimages/registerPassWord.png');background-size: 50px 20px ;background-position:90px 5px;background-repeat: no-repeat;"></label>
+          <input type="password" name="registerPassWord" id="registerPassWord" class="registerInput"
+            placeholder="请输入密码（8~30位字符）" maxlength="30" minlength="8"
+            style="width: 390px;height: 33px;padding: 7px;background-color: #846c60;color: #fff;">
+          <span id="passWordError" style="position:absolute;top:35px;left:155px;color: red;font-size: 16px;"></span>
+        </div>
+        <div style="position:relative;display: flex;width:594px;height:35px;margin-top: 27px;">
+          <label for="yanZhengMa"
+            style="width:155px;height:35px;background: url('./images/Loginimages/yanZhengMa.png');background-size: 117px 19px ;background-position:22px 5px;background-repeat: no-repeat;"></label>
+          <input type="text" id="yanZhengMa" name="yanZhengMa" class="registerInput" placeholder="请输入验证码" maxlength="6"
+            style="width: 257px;height: 33px;padding: 7px;background-color: #846c60;color: #fff;margin-right: 10px;">
+          <a href="javascript:void(0)" id="yanZhengMaBtn"
+            style="background: url('./images/Loginimages/registerButton.jpg') no-repeat;width: 118px;height: 31px;color: #5a4130;border: none;background-size: contain;font-size: 18px;line-height: 31px;text-align: center;">获取验证码</a>
+          <div id="yanZhengMaDiv"
+            style="position:absolute;top:35px;left:430px;color: red;font-size: 20px;transition: all 0.3s ease-in-out;">
+          </div>
+          <span id="yanZhengMaError" style="position:absolute;top:35px;left:155px;color: red;font-size: 16px;"></span>
+        </div>
+        <input type="submit" value="注册并登录" name="submit"
+          style="position:absolute;bottom:0;left:35%;background: url('./images/Loginimages/registerButton.jpg');font-size: 24px;width: 162px;height: 41px; line-height: 41px;color: #4a2e1c;">
+      </form>
+
+    </div>
+  </div>
+  <script src="./jsCode/login.js"></script>
+</body>
+
+</html>
